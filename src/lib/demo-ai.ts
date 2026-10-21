@@ -38,7 +38,8 @@ export function demoMeeting(notes: string): MeetingResult {
     (l) => !decisions.includes(l) && /\b(will|to do|todo|action|needs? to|must|should|follow up|send|prepare)\b/i.test(l),
   );
   const actions = actionLines.map((l) => {
-    const owner = l.match(/^([A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(?:will|to|needs?|must|should)\b/)?.[1] ?? NS;
+    const m = l.match(/^([A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(?:will|to|needs?|must|should)\b/)?.[1];
+    const owner = m && !/^(We|I|You|They|He|She|It|Everyone|Team|The)$/.test(m.split(" ")[0]) ? m : NS;
     const deadline =
       l.match(/\b(?:by|before|due|until)\s+([A-Za-z0-9 ,/-]+?)(?:[.,;]|$)/i)?.[1]?.trim() ??
       l.match(/\b(today|tomorrow|next week|end of (?:day|week|month)|monday|tuesday|wednesday|thursday|friday)\b/i)?.[0] ??
