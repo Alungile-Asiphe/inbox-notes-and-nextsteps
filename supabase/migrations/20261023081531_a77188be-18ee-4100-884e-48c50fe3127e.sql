@@ -1,0 +1,1 @@
+CREATE POLICY "Server manages AI access blocks" ON public.workmate_ai_access_blocks FOR ALL TO service_role USING (true) WITH CHECK (true);
