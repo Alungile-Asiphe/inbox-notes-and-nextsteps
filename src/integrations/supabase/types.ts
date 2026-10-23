@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      workmate_ai_access_blocks: {
+        Row: {
+          created_at: string
+          id: string
+          reason: string
+          status: number
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          reason: string
+          status: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reason?: string
+          status?: number
+        }
+        Relationships: []
+      }
+      workmate_conversations: {
+        Row: {
+          created_at: string
+          id: string
+          messages: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
